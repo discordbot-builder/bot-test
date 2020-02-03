@@ -1,1 +1,25 @@
-Y29uc3QgeyBDbGllbnQgfSA9IHJlcXVpcmUoJ2Rpc2NvcmQuanMnKTsNCmNvbnN0IHsgdG9rZW4gfSA9IHJlcXVpcmUoJy4vc2V0dGluZ3MnKTsNCmNvbnN0IGV4cHJlc3MgPSByZXF1aXJlKCdleHByZXNzJykNCmNvbnN0IGFwcCA9IGV4cHJlc3MoKQ0KY29uc3QgY2xpZW50ID0gbmV3IENsaWVudCgpOw0KDQpjb25zdCBQT1JUID0gcHJvY2Vzcy5lbnYuUE9SVCB8fCAzMDAwOw0KDQpjbGllbnQub24oJ3JlYWR5JywgKCkgPT4gY29uc29sZS5sb2coJ1JlYWR5IScpKTsNCg0KY2xpZW50Lm9uKCdtZXNzYWdlJywgKG1zZykgPT4gew0KICAgIGlmIChtc2cuYXV0aG9yLmJvdCkgcmV0dXJuOw0KDQogICAgaWYgKG1zZy5jb250ZW50LnN0YXJ0c1dpdGgoJyFwaW5nJykpIHsNCiAgICAgICAgbXNnLmNoYW5uZWwuc2VuZCgnIWduaXAnKTsNCiAgICB9DQp9KTsNCg0KY2xpZW50LmxvZ2luKHRva2VuKTsNCg0KYXBwLmdldCgnLycsIGZ1bmN0aW9uIChyZXEsIHJlcykgew0KICByZXMuc2VuZCgnJykNCn0pDQoNCmFwcC5saXN0ZW4oUE9SVCk=
+const { Client } = require('discord.js');
+const { token } = require('./settings');
+const express = require('express')
+const app = express()
+const client = new Client();
+
+const PORT = process.env.PORT || 3000;
+
+client.on('ready', () => console.log('Ready!'));
+
+client.on('message', (msg) => {
+    if (msg.author.bot) return;
+
+    if (msg.content.startsWith('!ping')) {
+        msg.channel.send('!gnip');
+    }
+});
+
+client.login(token);
+
+app.get('/', function (req, res) {
+  res.send('')
+})
+
+app.listen(PORT)
